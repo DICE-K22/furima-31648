@@ -27,10 +27,10 @@
 | name　　　　　　| string     | null: false                    |
 | description   | text       | null: false                    |
 | category      | text       | null: false                    |
-| condition     | text       | null: false                    |
-| burden        | text       | null: false                    |
-| shipping_area | text       | null: false                    |
-| shipping_days | text       | null: false                    |
+| condition     | integer    | null: false                    |
+| burden        | integer    | null: false                    |
+| shipping_area | integer    | null: false                    |
+| shipping_days | integer    | null: false                    |
 | price         | text       | null: false                    |
 | user_id       | references | null: false, foreign_key: true |
 
@@ -43,10 +43,6 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| credit_info        | string     | null: false                    |
-| credit_valid_month | string     | null: false                    |
-| credit_valid_year  | string     | null: false                    |
-| credit_security    | string     | null: false                    |
 | user_id            | references | null: false, foreign_key: true |
 | product_id         | references | null: false, foreign_key: true |
 
@@ -57,15 +53,15 @@
 
 ##  shipping_addresses
 
-| Column       | Type   | Options     |
-| ------------ | ------ | ----------- |
-| postal_code  | string | null: false |
-| prefecture   | string | null: false |
-| city         | string | null: false |
-| house_number | string | null: false |
-| building     | string |             |
-| phone_number | string | null: false |
+| Column       | Type    | Options     |
+| ------------ | ------- | ----------- |
+| postal_code  | string  | null: false |
+| prefecture   | integer | null: false |
+| city         | string  | null: false |
+| house_number | string  | null: false |
+| building     | string  |             |
+| phone_number | string  | null: false |
 
 ###  Association
 
-- has_one :buyings
+- belongs_to :buyings
