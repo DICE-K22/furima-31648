@@ -15,10 +15,11 @@ class ProductsController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
   end
-end
 
-private
+  private
+
   def product_params
     params.require(:product).permit(:name, :description, :category_id, :condition_id, :burden_id, :shipping_area_id, :shipping_day_id, :price, :image).merge(user_id: current_user.id)
   end
