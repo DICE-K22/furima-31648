@@ -40,25 +40,50 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include('Category Select')
       end
+      it 'category_idのidが1だった場合は出品できない' do
+        @product.category_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include('Category Select')
+      end
       it 'condition_idが空では出品できない' do
         @product.condition_id = nil
         @product.valid?
         expect(@product.errors.full_messages).to include('Condition Select')
+      end
+      it 'condition_idのidが1だった場合は出品できない' do
+        @product.category_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include('Category Select')
       end
       it 'burden_idが空では出品できない' do
         @product.burden_id = nil
         @product.valid?
         expect(@product.errors.full_messages).to include('Burden Select')
       end
+      it 'burden_idのidが1だった場合は出品できない' do
+        @product.category_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include('Category Select')
+      end
       it 'shipping_area_idが空では出品できない' do
         @product.shipping_area_id = nil
         @product.valid?
         expect(@product.errors.full_messages).to include('Shipping area Select')
       end
+      it 'shipping_area_idのidが1だった場合は出品できない' do
+        @product.category_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include('Category Select')
+      end
       it 'shipping_day_idが空では出品できない' do
         @product.shipping_day_id = nil
         @product.valid?
         expect(@product.errors.full_messages).to include('Shipping day Select')
+      end
+      it 'shipping_day_idのidが1だった場合は出品できない' do
+        @product.category_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include('Category Select')
       end
       it 'priceが空では出品できない' do
         @product.price = nil
