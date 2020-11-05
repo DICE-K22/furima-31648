@@ -35,13 +35,13 @@ describe User do
       it 'emailに@が含まれていないと登録できない' do
         @user.email = 'aaa.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
-      it "重複したemailが存在する場合は登録できない" do
+      it '重複したemailが存在する場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
       it 'passwordが空では登録できない' do
         @user.password = nil
