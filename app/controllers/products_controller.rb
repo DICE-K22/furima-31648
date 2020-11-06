@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :find_method, only: [:show, :edit, :update]
+  before_action :find_method, only:[:show, :edit, :update]
   before_action :move_to_index, only: :edit
+  
   
   def index
     @products = Product.includes(:user).order(created_at: :desc)
@@ -43,7 +44,7 @@ class ProductsController < ApplicationController
   end
 
   def move_to_index
-    redirect_to action: :index unless @Product == current_user.id
+    redirect_to action: :index unless Product.find(params[:id]).user.id == current_user.id
   end
 
   def find_method
