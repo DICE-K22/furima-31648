@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :find_method, only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index, only: :edit
+  before_action :move_to_index, only: [:edit, :destroy]
 
   def index
     @products = Product.includes(:user).order(created_at: :desc)
@@ -35,7 +35,11 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    redirect_to root_path if @product.destroy
+    if @product.destroy
+      redirect_to root_path 
+    else
+      render :show
+    end
   end
 
   private
