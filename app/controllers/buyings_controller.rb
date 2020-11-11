@@ -7,10 +7,7 @@ class BuyingsController < ApplicationController
     @buying_shipping_address = BuyingShippingAddress.new
   end
 
-
-
   def create
-    
     @buying_shipping_address = BuyingShippingAddress.new(buying_params)
     if @buying_shipping_address.valid?
       pay_item
@@ -32,16 +29,15 @@ class BuyingsController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @product.price,
-        card: buying_params[:token],
-        currency: 'jpy'
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @product.price,
+      card: buying_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def move_to_index
-    redirect_to root_path if @product.user.id == current_user.id || @product.buying!= nil
+    redirect_to root_path if @product.user.id == current_user.id || !@product.buying.nil?
   end
-
 end

@@ -32,17 +32,17 @@ RSpec.describe BuyingShippingAddress, type: :model do
       it '郵便番号にハイフンが含まれていなけれな購入できない' do
         @buying_shipping_address.postal_code = '4444444'
         @buying_shipping_address.valid?
-        expect(@buying_shipping_address.errors.full_messages).to include("Postal code Input correctly")
+        expect(@buying_shipping_address.errors.full_messages).to include('Postal code Input correctly')
       end
       it '都道府県が空であれば購入できない' do
         @buying_shipping_address.prefecture_id = nil
         @buying_shipping_address.valid?
-        expect(@buying_shipping_address.errors.full_messages).to include("Prefecture can't be blank", "Prefecture Select")
+        expect(@buying_shipping_address.errors.full_messages).to include("Prefecture can't be blank", 'Prefecture Select')
       end
       it '都道府県を選択していなければ購入できない' do
         @buying_shipping_address.prefecture_id = '1'
         @buying_shipping_address.valid?
-        expect(@buying_shipping_address.errors.full_messages).to include("Prefecture Select")
+        expect(@buying_shipping_address.errors.full_messages).to include('Prefecture Select')
       end
       it '市町村区が空であれば購入できない' do
         @buying_shipping_address.city = nil
@@ -62,7 +62,7 @@ RSpec.describe BuyingShippingAddress, type: :model do
       it '電話番号が11桁以上であれば購入できない' do
         @buying_shipping_address.phone_number = '00000000000000'
         @buying_shipping_address.valid?
-        expect(@buying_shipping_address.errors.full_messages).to include("Phone number Input only number")
+        expect(@buying_shipping_address.errors.full_messages).to include('Phone number Input only number')
       end
     end
   end

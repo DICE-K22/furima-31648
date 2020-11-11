@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
 
   def destroy
     if @product.destroy
-      redirect_to root_path 
+      redirect_to root_path
     else
       render :show
     end
@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
   end
 
   def sold_out
-    redirect_to action: :index if @product.buying!= nil
+    redirect_to action: :index unless @product.buying.nil?
   end
 
   def find_method
